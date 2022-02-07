@@ -5,7 +5,7 @@ curl -J "http://graphhopper-data-proxy-svc.$POD_NAMESPACE.svc.cluster.local/down
 echo 'Finished downloading photon-db.';
 
 echo 'Decompressing photon-db...';
-pbzip2 -cd $DOWNLOADS_GRAPHHOPPER_FILE_NAME | tar x
+bzip2 -cd $DOWNLOADS_GRAPHHOPPER_FILE_NAME | tar x
 echo 'Finished decompressing photon-db.';
 
 java -jar ./photon-*.jar
