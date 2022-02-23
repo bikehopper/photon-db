@@ -8,4 +8,4 @@
 # bzip2 -cd $DOWNLOADS_GRAPHHOPPER_FILE_NAME | tar x
 # echo "[$(date -u +'%Y-%m-%dT%H:%M:%SZ')] Finished decompressing photon-db.";
 
-java -jar ./photon-*.jar -nominatim-import -host nominatim-svc.$POD_NAMESPACE.svc.cluster.local -port 5432 -database nominatim -user nominatim -password $NOMINATIM_PASSWORD
+java -jar ./photon-*.jar -nominatim-import -host nominatim-app-svc.$POD_NAMESPACE.svc.cluster.local -port 5432 -database nominatim -user nominatim -password $NOMINATIM_PASSWORD
