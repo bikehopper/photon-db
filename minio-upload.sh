@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-
+set -eu
 # Usage: ./minio-upload my-bucket /prefix my-file_path.zip
 
 bucket=$1
@@ -17,7 +17,7 @@ date=`date -R`
 _signature="PUT\n\n${content_type}\n${date}\n${resource}"
 signature=`echo -en ${_signature} | openssl sha1 -hmac ${s3_secret} -binary | base64`
 
-curl -X PUT -T "${file_path}" \
+curl --fail-with-body -X PUT -T "${file_path}" \
           -H "Host: ${host}" \
           -H "Date: ${date}" \
           -H "Content-Type: ${content_type}" \

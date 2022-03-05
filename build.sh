@@ -7,8 +7,5 @@ touch ./photon_data/test1.txt
 echo 'Hello Andy' >> ./photon_data/test1.txt
 
 tar -zvcf "photon_data.tar.gz" ./photon_data
-echo 'ls /bin...'
-ls /bin
-echo 'ls ./...'
-ls -halt
+
 ./minio-upload.sh $BUCKET_NAME /elasticsearch photon_data.tar.gz
