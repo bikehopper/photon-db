@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# Usage: ./minio-upload my-bucket /prefix/my-file_path.zip
+# Usage: ./minio-upload my-bucket /prefix my-file_path.zip
 
 bucket=$1
-file_path=$2
+prefix=$2
+file_path=$3
 
 # minio.staging
 host="${MINIO_HOST}.${POD_NAMESPACE}"
 s3_key=$ACCESS_KEY
 s3_secret=$SECRET_KEY
 
-resource="/${bucket}${file_path}"
+resource="/${bucket}${prefix}/${file_path}"
 content_type="application/octet-stream"
 date=`date -R`
 _signature="PUT\n\n${content_type}\n${date}\n${resource}"
