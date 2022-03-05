@@ -1,12 +1,12 @@
 FROM openjdk:19-jdk-alpine3.15
 
 # used to unzip photon-db
-RUN apk add bzip2 curl
-
-RUN mkdir -p /usr/app
+RUN apk add bzip2 curl \
+  && mkdir -p /usr/app
 
 # copy startup script
 COPY ./build.sh /usr/app
+COPY ./minio-upload.sh /usr/app
 
 WORKDIR /usr/app
 

@@ -7,6 +7,7 @@ RUN mkdir -p /usr/app
 
 # copy startup script
 COPY ./main.sh /usr/app
+COPY ./minio-download.sh /usr/app
 
 WORKDIR /usr/app
 
