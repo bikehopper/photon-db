@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Usage: ./minio-upload my-bucket /prefix my-file_path.zip
 
