@@ -19,23 +19,23 @@ fi
 
 
 # User Minio Vars
-host="${MINIO_HOST}.${POD_NAMESPACE}"
-s3_key=$ACCESS_KEY
-s3_secret=$SECRET_KEY
 BUCKET=$1
 MINIO_PATH="/${BUCKET}$2"
 OUT_FILE=$3
 
 # Static Vars
+HOST="${MINIO_HOST}.${POD_NAMESPACE}"
+S3_KEY=$ACCESS_KEY
+S3_SECRET=$SECRET_KEY
 DATE=$(date -R --utc)
 CONTENT_TYPE='application/zstd'
 SIG_STRING="GET\n\n${CONTENT_TYPE}\n${DATE}\n${MINIO_PATH}"
-SIGNATURE=`echo -en ${SIG_STRING} | openssl sha1 -hmac ${s3_secret} -binary | base64`
+SIGNATURE=`echo -en ${SIG_STRING} | openssl sha1 -hmac ${S3_SECRET} -binary | base64`
 
 
 curl -o "${OUT_FILE}" \
-    -H "Host: $host" \
+    -H "Host: $HOST" \
     -H "Date: ${DATE}" \
     -H "Content-Type: ${CONTENT_TYPE}" \
-    -H "Authorization: AWS ${s3_key}:${SIGNATURE}" \
-    http://$host${MINIO_PATH}
+    -H "Authorization: AWS ${S3_KEY}:${SIGNATURE}" \
+    http://$HOST${MINIO_PATH}
