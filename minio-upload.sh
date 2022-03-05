@@ -6,8 +6,8 @@ bucket=$1
 prefix=$2
 file=$3
 
-# minio.staging.svc.cluster.local
-host=$MINIO_HOST
+# minio.staging
+host="${MINIO_HOST}.${POD_NAMESPACE}"
 s3_key=$ACCESS_KEY
 s3_secret=$SECRET_KEY
 
