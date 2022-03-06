@@ -26,7 +26,7 @@ echo "s3_key: ${s3_key}"
 echo "s3_secret: ${s3_secret}"
 echo "resource: ${resource}"
 
-curl --silent -v --fail-with-body -X PUT -T "${file_path}" \
+curl --silent -v --fail-with-body -o output -X PUT -T "${file_path}" \
           -H "Host: ${host}" \
           -H "Date: ${date}" \
           -H "Content-Type: ${content_type}" \
