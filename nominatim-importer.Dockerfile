@@ -2,7 +2,7 @@ FROM openjdk:19-jdk-alpine3.15
 
 # used to unzip photon-db
 RUN apk update \
-  && apk add bzip2 openssl curl \
+  && apk add aws-cli \
   && mkdir -p /usr/app
 
 # copy startup script

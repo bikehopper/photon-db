@@ -8,4 +8,4 @@ echo 'Hello Andy' >> ./photon_data/test1.txt
 
 tar -zvcf "photon_data.tar.gz" ./photon_data
 
-./minio-upload.sh $BUCKET_NAME /elasticsearch photon_data.tar.gz
+AWS_ACCESS_KEY_ID=$ACCESS_KEY AWS_SECRET_ACCESS_KEY=$SECRET_KEY aws s3api put-object --endpoint-url http://$MINIO_HOST.$POD_NAMESPACE --bucket $BUCKET_NAME --key elasticsearch/photon_data.tar.gz --body photon_data.tar.gz
