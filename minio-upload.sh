@@ -7,7 +7,7 @@ prefix=$2
 file_path=$3
 
 # minio.staging
-host="${MINIO_HOST}.${POD_NAMESPACE}:${MINIO_PORT}"
+host="${MINIO_HOST}.${POD_NAMESPACE}"
 s3_key=$ACCESS_KEY
 s3_secret=$SECRET_KEY
 
