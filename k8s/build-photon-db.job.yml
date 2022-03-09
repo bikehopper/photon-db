@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: build-photon-db
+spec:
+  schedule: "0 2,14 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: "kubernetes.io/arch"
+                    operator: In
+                    values: ["amd64"]
+          containers:
+          - name: photon-db
+            image: ghcr.io/bikehopper/photon-db-nominatim-importer@sha256:6a5dad3d7433922d1a7707759f5dc704f60ef79b915b3121e8b67cba720bd531
+            resources:
+              requests:
+                memory: "3Gi"
+                cpu: "3000m"
+            envFrom:
+            - secretRef:
+                name: minio-graphhopper-staging
+            env:
+            - name: BUCKET_NAME
+              value: bikehopper-photon
+            - name: MINIO_HOST
+              value: minio
+            - name: NOMINATIM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nominatim-db
+                  key: password
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          imagePullSecrets:
+          - name: dockerconfigjson-github-com
+          restartPolicy: Never

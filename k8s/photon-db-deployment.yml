@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photon-db-deployment
+  labels:
+    app: photon-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: photon-db
+  template:
+    metadata:
+      labels:
+        app: photon-db
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "kubernetes.io/arch"
+                operator: In
+                values: ["amd64"]
+      containers:
+      - name: photon-db
+        image: ghcr.io/bikehopper/photon-db@sha256:82929d8bed3b08155f5f7af4b8501f7481e8194ef1a2ba02e4a7716e84c76335
+        ports:
+          - containerPort: 2322
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1500m"
+          limits:
+            memory: "2Gi"
+            cpu: "2000m"
+        readinessProbe:
+          httpGet:
+            path: /api?q=healthz
+            port: 2322
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 20
+        envFrom:
+        - secretRef:
+            name: minio-graphhopper-staging
+        env:
+        - name: BUCKET_NAME
+          value: bikehopper-photon
+        - name: MINIO_HOST
+          value: minio
+        - name: NOMINATIM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nominatim-db
+              key: password
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: photon-db-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: photon-db
+  ports:
+  - port: 80
+    targetPort: 2322
+    protocol: TCP
+    name: http
