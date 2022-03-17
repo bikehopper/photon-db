@@ -15,9 +15,8 @@ spec:
           restartPolicy: Never
           containers:
           - name: updater-photon-db
-            image: alpine/curl:3.14
-            command: ["curl"]
-            args: ["http://$(PHOTON_SVC_NAME).$(POD_NAMESPACE)/nominatim-update", "--silent"]
+            image: curlimages/curl
+            command: ["sh", "-c", "curl http://$(PHOTON_SVC_NAME).$(POD_NAMESPACE)/nominatim-update --silent"]
             resources:
               requests:
                 memory: "10Mi"
