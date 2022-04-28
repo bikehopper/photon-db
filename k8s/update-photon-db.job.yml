@@ -4,7 +4,7 @@ metadata:
   name: update-photon-db
 spec:
   schedule: "*/15 * * * *"
-  successfulJobsHistoryLimit: 0
+  successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Replace
   jobTemplate:
@@ -16,7 +16,7 @@ spec:
           containers:
           - name: updater-photon-db
             image: curlimages/curl
-            command: ["sh", "-c", "curl http://$(PHOTON_SVC_NAME).$(POD_NAMESPACE)/nominatim-update --silent"]
+            command: ["sh", "-c", "curl -vvvv http://$(PHOTON_SVC_NAME).$(POD_NAMESPACE)/nominatim-update"]
             resources:
               requests:
                 memory: "10Mi"
