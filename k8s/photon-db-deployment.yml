@@ -6,7 +6,7 @@ metadata:
   labels:
     app: photon-db
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: photon-db
@@ -25,7 +25,7 @@ spec:
                 values: ["amd64"]
       containers:
       - name: photon-db
-        image: ghcr.io/bikehopper/photon-db@sha256:82929d8bed3b08155f5f7af4b8501f7481e8194ef1a2ba02e4a7716e84c76335
+        image: ghcr.io/bikehopper/photon-db@sha256:a566909db9affc4d9856fb1eb7806bc5199ebc6dfede4379c57f5fef7f19e32a
         ports:
           - containerPort: 2322
         resources:
