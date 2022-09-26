@@ -11,6 +11,6 @@ COPY ./build.sh /usr/app
 WORKDIR /usr/app
 
 # get photon jar file
-RUN curl -LJ https://github.com/komoot/photon/releases/download/0.3.5/photon-0.3.5.jar -o /usr/app/photon-0.3.5.jar --silent
+RUN curl -LJ https://github.com/komoot/photon/releases/download/0.4.1/photon-0.4.1.jar -o /usr/app/photon-0.4.1.jar --silent
 
 ENTRYPOINT [ "/usr/app/build.sh" ]
