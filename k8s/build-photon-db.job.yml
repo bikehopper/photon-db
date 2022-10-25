@@ -22,7 +22,7 @@ spec:
                     values: ["amd64"]
           containers:
           - name: photon-db
-            image: ghcr.io/bikehopper/photon-db-nominatim-importer@sha256:6a5dad3d7433922d1a7707759f5dc704f60ef79b915b3121e8b67cba720bd531
+            image: ghcr.io/bikehopper/photon-db-nominatim-importer@sha256:6eaf7a107909e83a706187cbcdbf737d7503251b1b513a09a2ba762e1dbe2203
             resources:
               requests:
                 memory: "3Gi"

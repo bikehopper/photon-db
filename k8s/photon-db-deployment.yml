@@ -25,7 +25,7 @@ spec:
                 values: ["amd64"]
       containers:
       - name: photon-db
-        image: ghcr.io/bikehopper/photon-db@sha256:a566909db9affc4d9856fb1eb7806bc5199ebc6dfede4379c57f5fef7f19e32a
+        image: ghcr.io/bikehopper/photon-db@sha256:f26ce8e5e191f5da70c9a93dd227599809e1a685ce8f4955ffff9972122b0dbd
         ports:
           - containerPort: 2322
         resources:
@@ -51,11 +51,6 @@ spec:
           value: bikehopper-photon
         - name: MINIO_HOST
           value: minio
-        - name: NOMINATIM_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: nominatim-db
-              key: password
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
