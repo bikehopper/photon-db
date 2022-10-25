@@ -25,7 +25,7 @@ spec:
                 values: ["amd64"]
       containers:
       - name: photon-db
-        image: ghcr.io/bikehopper/photon-db@sha256:f26ce8e5e191f5da70c9a93dd227599809e1a685ce8f4955ffff9972122b0dbd
+        image: ghcr.io/bikehopper/photon-db@sha256:34fd54efb570f9219b1574fbabe27187c7751bdcf03eb5daadcc8c539e0496ae
         ports:
           - containerPort: 2322
         resources:
