@@ -76,6 +76,7 @@ spec:
       backoffLimit: 3
       template:
         spec:
+          restartPolicy: Never
           containers:
           - name: photon-db
             image: ghcr.io/bikehopper/photon-db-nominatim-importer:v1.0.0-beta1
@@ -100,4 +101,3 @@ spec:
                   fieldPath: metadata.namespace
           imagePullSecrets:
           - name: dockerconfigjson-github-com
-          restartPolicy: Never
