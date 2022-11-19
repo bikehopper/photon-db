@@ -17,7 +17,6 @@ spec:
     spec:
       containers:
       - name: photon-db
-        image: ghcr.io/bikehopper/photon-db:v1.0.0-beta1
         ports:
           - containerPort: 2322
         resources:
@@ -76,10 +75,8 @@ spec:
       backoffLimit: 3
       template:
         spec:
-          restartPolicy: Never
           containers:
           - name: photon-db
-            image: ghcr.io/bikehopper/photon-db-nominatim-importer:v1.0.0-beta1
             resources:
               requests:
                 memory: "3Gi"
@@ -101,3 +98,4 @@ spec:
                   fieldPath: metadata.namespace
           imagePullSecrets:
           - name: dockerconfigjson-github-com
+          restartPolicy: Never
