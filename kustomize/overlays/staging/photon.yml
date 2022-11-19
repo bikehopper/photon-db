@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: photon-db-deployment
+  name: photon-db
 spec:
   replicas: 1
   template:
