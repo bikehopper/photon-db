@@ -19,6 +19,7 @@ kind: CronJob
 metadata:
   name: build-photon-db
 spec:
+  schedule: "0 4,16 * * *"
   jobTemplate:
     spec:
       backoffLimit: 1
