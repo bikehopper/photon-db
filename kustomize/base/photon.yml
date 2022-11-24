@@ -79,10 +79,10 @@ spec:
       backoffLimit: 3
       template:
         spec:
-        hostAliases:
-        - ip: "192.168.50.10"
-          hostnames:
-          - "minio.techlabor.org"
+          hostAliases:
+          - ip: "192.168.50.10"
+            hostnames:
+            - "minio.techlabor.org"
           containers:
           - name: photon-db
             resources:
