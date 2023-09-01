@@ -1,4 +1,3 @@
-# FROM openjdk:19-jdk-alpine3.15
 FROM amazoncorretto:20-alpine3.18
 
 # used to unzip photon-db
@@ -12,6 +11,6 @@ COPY ./main.sh /usr/app
 WORKDIR /usr/app
 
 # get photon jar file
-RUN curl -LJ https://github.com/komoot/photon/releases/download/0.4.1/photon-0.4.3.jar -o /usr/app/photon-0.4.3.jar --silent
+RUN curl -fsSLJ https://github.com/komoot/photon/releases/download/0.4.3/photon-0.4.3.jar -o /usr/app/photon-0.4.3.jar --silent
 
 ENTRYPOINT [ "/usr/app/main.sh" ]
