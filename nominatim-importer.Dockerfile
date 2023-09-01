@@ -1,8 +1,8 @@
-FROM amazoncorretto:20-alpine3.18
+FROM eclipse-temurin:17-jre-jammy
 
 # used to unzip photon-db
-RUN apk update \
-  && apk add aws-cli curl pigz \
+RUN apt-get update \
+  && apt-get install -y awscli curl pigz \
   && mkdir -p /usr/app
 
 # copy startup script
