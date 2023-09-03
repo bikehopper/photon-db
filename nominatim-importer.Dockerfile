@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jre-jammy
 
 # used to unzip photon-db
 RUN apt-get update \
-  && apt-get install -y awscli curl pigz \
+  && apt-get install -y awscli curl pigz dumb-init \
   && mkdir -p /usr/app
 
 # copy startup script
@@ -12,5 +12,5 @@ WORKDIR /usr/app
 
 # get photon jar file
 RUN curl -fsSLJ https://github.com/komoot/photon/releases/download/0.4.3/photon-0.4.3.jar -o /usr/app/photon-0.4.3.jar --silent
-
-ENTRYPOINT [ "/usr/app/build.sh" ]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD [ "/usr/app/build.sh" ]
