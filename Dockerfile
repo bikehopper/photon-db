@@ -7,6 +7,7 @@ RUN apt-get update \
 
 # copy startup script
 COPY ./main.sh /usr/app
+COPY ./build.sh /usr/app
 
 WORKDIR /usr/app
 
