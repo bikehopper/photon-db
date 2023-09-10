@@ -13,4 +13,3 @@ WORKDIR /usr/app
 # get photon jar file
 RUN curl -fsSLJ https://github.com/komoot/photon/releases/download/0.4.3/photon-0.4.3.jar -o /usr/app/photon-0.4.3.jar --silent
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD [ "/usr/app/main.sh" ]
