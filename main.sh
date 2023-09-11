@@ -11,4 +11,5 @@ if [ -z "$(ls -A ./photon_data | grep -v .gitkeep)" ]; then # if empty photon_da
 fi
 
 echo "Starting photon..."
-java -jar ./photon-*.jar
+
+exec java -jar ./photon-*.jar
