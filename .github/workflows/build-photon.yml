@@ -54,9 +54,7 @@ jobs:
         with:
           context: .
           platforms: ${{matrix.platform}}
-          # provenance: false
-          # push: true
-          # tags: ${{ steps.meta.outputs.tags }}
+          provenance: false
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push-by-digest=true,name-canonical=true,push=true
 
