@@ -1,0 +1,11 @@
+# Only the go provider will be run
+providers = ["java"]
+
+[phases.install]
+cmds = ["sh coolify/install.sh"]
+
+[phases.build]
+cmds = ["sh coolify/build.sh"]
+
+[phases.start]
+cmds = ["sh coolify/run.sh"]
