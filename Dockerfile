@@ -1,5 +1,7 @@
 FROM mediagis/nominatim:5.1
 
+RUN sh /app/start.sh
+
 # used to unzip photon-db
 RUN apt-get update \
   && apt-get install -y default-jre dumb-init \
