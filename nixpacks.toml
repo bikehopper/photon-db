@@ -5,10 +5,6 @@ providers = ["java"]
 dependsOn = ['setup']
 cmds = ["sh coolify/install.sh"]
 
-[phases.build]
-dependsOn = ['install']
-cmds = ["sh coolify/build.sh"]
-
 [phases.start]
-dependsOn = ['build']
+dependsOn = ['install']
 cmds = ["sh coolify/run.sh"]
